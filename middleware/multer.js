@@ -7,6 +7,7 @@ const storage = multer.diskStorage({
         cb(null, "public/upload")
     },
     filename: function (req,file,cb){
+        // file.fieldname
         const ext = path.extname(file.originalname);
         const mimetype = path.extname(file.mimetype);
         console.log(mimetype);
