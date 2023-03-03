@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
         const ext = path.extname(file.originalname);
         const mimetype = path.extname(file.mimetype);
         console.log(mimetype);
-        const whiteLisstFormat = ['.png','.jpg','.jpeg']
+        const whiteLisstFormat = ['.png','.jpg','.jpeg','.zip']
         const whiteLisstMimType = ['image/png','image/jpg','image/jpeg']
         if(whiteLisstFormat.includes(ext)){
             const fileName = Date.now() + ext
@@ -21,9 +21,12 @@ const storage = multer.diskStorage({
         
     }
 });
-
+const _3MB = 3 * 1000 * 1000
 const uploadFile = multer({
-    storage: storage
+    storage: storage,
+    limits:{
+        fileSize: _3MB
+    }
 })
 
 module.exports = {
