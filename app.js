@@ -8,9 +8,12 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"))
 
-app.post("/upload", uploadFile.single("image") ,(req,res,next) => {
+// app.post("/upload", uploadFile.single("image") ,(req,res,next) => {
+app.post("/upload", uploadFile.array("image",3) ,(req,res,next) => {
+
     console.log(req.body);
-    res.send(req.file)
+    // res.send(req.file)
+    res.send(req.files)
 })
 
 app.use(NotFoundError)
